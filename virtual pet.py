@@ -35,13 +35,8 @@ def save_to_file(i,new_data1,new_data2,new_data3):
 
      print(f"the stats: \n Hunger={data[i+1]}  Happiness={data[i+2]}  Energy={data[i+3]}")
      
-     if (data[i+1]==0 or  data[i+2]==0 or  data[i+3]==0):
-                print("Your pet died of negligence. Game Over")
-    
-     elif( data[i+1]>80 and  data[i+2]>80 and  data[i+3]>80):
-                print("Your pet is satisfied. You win")
-
-        
+     
+     
 
 def feed_pet(pet_name):
     """To feed the pet to increase hunger"""
@@ -175,8 +170,7 @@ def gameplay():
              data[i+1]=int(data[i+1])
              data[i+2]=int(data[i+2])
              data[i+3]=int(data[i+3])
-    starting_time=time.time()
-    endTime=starting_time+10
+    
     while True:
         starting_time=time.time()
         endTime=starting_time+10
@@ -185,6 +179,25 @@ def gameplay():
         print("2.Play with your pet")
         print("3.It's Nap Time")
         print("4.Exit")
+        
+        with open(PET_FILE,"r") as File:
+             data=File.read()
+             data=data.split()
+             i=0
+             for index,elements in enumerate(data):
+                  if elements==pet_name:
+                       i=index
+             data[i+1]=int(data[i+1])
+             data[i+2]=int(data[i+2])
+             data[i+3]=int(data[i+3])
+             if (data[i+1]==0 or  data[i+2]==0 or  data[i+3]==0):
+                print("Your pet died of negligence. Game Over")
+                break
+    
+             elif( data[i+1]>80 and  data[i+2]>80 and  data[i+3]>80):
+                print("Your pet is satisfied. You win")
+                break
+
         choice=input("Enter your choice (1/2/3/4):").strip()
 
         if time.time()>endTime:
@@ -202,7 +215,6 @@ def gameplay():
             break
         else:
             print("No such choice exists")
-
 
 
 def display_pet_stat():
