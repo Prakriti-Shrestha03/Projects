@@ -133,7 +133,7 @@ def nap_time(pet_name):
              data[i+1]-=2
              data[i+2]-=2
              data[i+3]+=10
-
+             
          x=input("do you want to save?").lower()
          if x=="yes":
             save_to_file(i,data[i+1],data[i+2],data[i+3]) 
@@ -141,7 +141,7 @@ def nap_time(pet_name):
          if(data[i+3]==100):
              print("Fully rested")
              break
-        
+
 
 def gameplay():
     """The main game play """
@@ -177,13 +177,19 @@ def gameplay():
              data[i+3]=int(data[i+3])
     starting_time=time.time()
     endTime=starting_time+10
-    while time.time()<endTime:
+    while True:
+        starting_time=time.time()
+        endTime=starting_time+10
         print("What would you like to do with your pet:")
         print("1.Feed your pet")
         print("2.Play with your pet")
         print("3.It's Nap Time")
         print("4.Exit")
         choice=input("Enter your choice (1/2/3/4):").strip()
+
+        if time.time()>endTime:
+            print("Too Slow")
+            break
 
         if choice=="1":
             feed_pet(pet_name)
@@ -196,7 +202,6 @@ def gameplay():
             break
         else:
             print("No such choice exists")
-        print("You took longer than 10 seconds so you get only one chance.")
 
 
 
