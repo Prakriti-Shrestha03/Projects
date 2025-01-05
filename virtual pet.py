@@ -143,6 +143,9 @@ def gameplay():
     print("Let's meet your pet")
     pet_name=input("Enter your pet's name:").strip()
 
+    with open(PET_FILE,"a") as File:
+        pass 
+    
     with open(PET_FILE,"r") as File:
         data=File.read()
         data=data.split()
